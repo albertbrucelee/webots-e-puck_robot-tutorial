@@ -4,11 +4,18 @@
   <img src="https://raw.githubusercontent.com/albertbrucelee/webots-e-puck_robot/master/image/webots-e-puck_robot.png">
 </p>
 
+* [Encouragement](#encouragement)
 * [Description](#description)
 * [About Webots Robot Simulator](#about-webots-robot-simulator)
 * [About e-puck Robot](#about-e-puck-robot)
 * [Question](#question)
 * [License](#license)
+
+## Encouragement
+
+Do you want to learn robot, but you don't have money to buy the robot? Webots robot simulator is the solution!
+
+You can learn with any kind of robots, any kind of 3D environments. Also you can create your custom robots and environment. The most interesting is Webots is free and open source.
 
 ## Description
 
