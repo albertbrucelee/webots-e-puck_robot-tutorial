@@ -41,7 +41,7 @@ int time_step;
 /* Motor device */
 static WbDeviceTag left_motor, right_motor;
 
-/* E-puck //angular speed in rad/s */
+/* E-puck angular speed in rad/s */
 #define MAX_SPEED 6.28
 
 /* function to get simulator time step */
