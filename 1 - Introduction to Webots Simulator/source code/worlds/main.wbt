@@ -1,0 +1,25 @@
+#VRML_SIM R2019b utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation -1 0 0 1.58
+  position -0.034 2.1777990800640437 -0.02248263658206714
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+}
+E-puck {
+  controller "e-puck-move_forward"
+}
+WoodenBox {
+  translation 0 0.05 -0.2
+  size 0.2 0.1 0.1
+}
+OilBarrel {
+  translation 0.2 0.05 -0.2
+  height 0.1
+  radius 0.05
+}
