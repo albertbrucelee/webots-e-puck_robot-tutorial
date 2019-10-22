@@ -4,9 +4,9 @@ This repository contain the simple avoidance algorithm program that implemented 
 
 The source code is written in C programming language.
 
-How does it work? Please read the tutorial from my [Medium](https://medium.com/@albert.brucelee)
+How does it work? Please read the tutorial from my Medium [here](https://medium.com/@albert.brucelee/simple-avoidance-algorithm-implemented-on-e-puck-robot-and-simulated-on-webots-robot-simulator-3143c096d285)
 
-The program source code is in the "source code" folder.
+The program source code is located in the "source code" folder.
 
 ## Don't you know about Webots?
 
@@ -18,6 +18,10 @@ Don't be afraid, this official tutorial is very clean and easy to understand. An
 ## Question?
 
 If you have any question, feel free to contact me by email or [Linkedin](https://www.linkedin.com/in/albert-alfrianta/)
+
+## Another Tutorials
+You can visit my Medium [here](https://medium.com/@albert.brucelee) for another tutorials.
+Also you can view another repositories on my Github about Webots [here](https://github.com/albertbrucelee/webots-e-puck_robot)
 
 ## License
 

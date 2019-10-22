@@ -52,7 +52,7 @@ WoodenBox {
 }
 WoodenBox {
   translation 0.24492399999999998 0.049999999999999996 -0.350638
-  rotation 0 1 0 0.261799
+  rotation 0 1 0 0.523598
   name "rectangle 2"
   size 0.3 0.1 0.1
 }

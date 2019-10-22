@@ -47,7 +47,14 @@ static WbDeviceTag left_motor, right_motor;
 #define NUMBER_OF_DISTANCE_SENSORS 8
 static WbDeviceTag distance_sensors[NUMBER_OF_DISTANCE_SENSORS];
 static const char *distance_sensors_names[NUMBER_OF_DISTANCE_SENSORS] = {"ps0", "ps1", "ps2", "ps3", "ps4", "ps5", "ps6", "ps7"};
-static double distance_sensors_values[NUMBER_OF_DISTANCE_SENSORS];
+
+/*
+ * The sensor has noise
+ * So even there is no obstacle, sensor values is not zero
+ * So to detect obstacle, we must use this threshold
+ * Based on my experiment, the good threshold value is 140
+ * Obstacle detected condition is true if the sensor values is larger then this threshold value
+ * */
 #define SENSOR_VALUE_DETECTION_THRESHOLD 140
 
 /* speed of robot to spinning in place (in degrees per second) */
@@ -116,53 +123,35 @@ void motor_rotate_left_in_degrees(float degrees) {
 	motor_stop();
 }
 
-/* function to get sensor values, and assign the sensor values to variable */
-void update_sensor_values() {
+/* function to get sensors condition 
+ * if sensor detect obstacle, then the condition is true
+ * */
+bool * get_sensors_condition()
+{
+	static bool sensors_condition[NUMBER_OF_DISTANCE_SENSORS] = {false};
+	
 	for (int i = 0; i < NUMBER_OF_DISTANCE_SENSORS ; i++) {
-		distance_sensors_values[i] = wb_distance_sensor_get_value(distance_sensors[i]);
+		/*
+		 * Obstacle detected condition is true if the sensor values is larger then the threshold value
+		 * */
+		if (wb_distance_sensor_get_value(distance_sensors[i]) > SENSOR_VALUE_DETECTION_THRESHOLD) {
+			sensors_condition[i] = true;
+		} else {
+			sensors_condition[i] = false;
+		}
 	}
+	
+	return sensors_condition;
 }
 
-/* function to print sensor values */
+/* function to print sensors values
+ * */
 void print_sensor_values() {
 	printf("%s sensor values: ", wb_robot_get_name());
 	
 	for (int i = 0; i < NUMBER_OF_DISTANCE_SENSORS ; i++) {
-		printf("%d:%.3f ", i, distance_sensors_values[i]);
+		printf("%d:%.3f ", i, wb_distance_sensor_get_value(distance_sensors[i]));
 	}
 	
 	printf("\n");
-}
-
-/* function to detect obstacle in front */
-bool is_obstacle_front() {
-	return
-		distance_sensors_values[0] > SENSOR_VALUE_DETECTION_THRESHOLD ||
-		distance_sensors_values[7] > SENSOR_VALUE_DETECTION_THRESHOLD;
-}
-
-/* function to detect obstacle in front right */
-bool is_obstacle_front_right() {
-	return
-		distance_sensors_values[0] > SENSOR_VALUE_DETECTION_THRESHOLD ||
-		distance_sensors_values[1] > SENSOR_VALUE_DETECTION_THRESHOLD;
-}
-
-/* function to detect obstacle in front left */
-bool is_obstacle_front_left() {
-	return
-		distance_sensors_values[6] > SENSOR_VALUE_DETECTION_THRESHOLD ||
-		distance_sensors_values[7] > SENSOR_VALUE_DETECTION_THRESHOLD;
-}
-
-/* function to detect obstacle in right */
-bool is_obstacle_right() {
-	return
-		distance_sensors_values[2] > SENSOR_VALUE_DETECTION_THRESHOLD;
-}
-
-/* function to detect obstacle in left */
-bool is_obstacle_left() {
-	return
-		distance_sensors_values[5] > SENSOR_VALUE_DETECTION_THRESHOLD;
 }

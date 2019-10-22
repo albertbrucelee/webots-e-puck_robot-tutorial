@@ -26,7 +26,6 @@
 
 
 #include <stdio.h>
-#include <stdlib.h>
 
 #include <webots/robot.h>
 
@@ -54,20 +53,16 @@ int main(int argc, char **argv) {
    * Perform simulation steps of TIME_STEP milliseconds
    * and leave the loop when the simulation is over
    */
-  while (wb_robot_step(TIME_STEP) != -1) {
-		motor_move_forward();
-		
-		update_sensor_values();
-		
+  while (wb_robot_step(TIME_STEP) != -1) {		
 		//print_sensor_values();
 		
-		if (is_obstacle_front()) {
-			motor_rotate_left();
-		} else if (is_obstacle_front_right() && is_obstacle_front_left()) {
+		bool *is_sensors_active = get_sensors_condition();
+		
+		if (is_sensors_active[1] && is_sensors_active[6]) {
 			motor_rotate_left_in_degrees(180);
-		} else if (is_obstacle_front_right()) {
+		} else if (is_sensors_active[0] || is_sensors_active[1]) {
 			motor_rotate_left();
-		} else if (is_obstacle_front_left()) {
+		} else if (is_sensors_active[7] || is_sensors_active[6]) {
 			motor_rotate_right();
 		} else {
 			motor_move_forward();
@@ -79,5 +74,5 @@ int main(int argc, char **argv) {
   /* This is necessary to cleanup webots resources */
   wb_robot_cleanup();
 
-  return EXIT_SUCCESS;
+  return 0;
 }
