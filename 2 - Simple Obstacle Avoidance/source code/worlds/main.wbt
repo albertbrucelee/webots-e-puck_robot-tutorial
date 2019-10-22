@@ -1,0 +1,93 @@
+#VRML_SIM R2019b utf8
+WorldInfo {
+  basicTimeStep 8
+}
+Viewpoint {
+  orientation -1 0 0 1.5987500000000008
+  position -0.034 2.1782681432889994 -0.06410551716540941
+}
+Background {
+  skyColor [
+    1 1 1
+  ]
+}
+DirectionalLight {
+  direction 0 -1 1
+  intensity 3
+}
+RectangleArena {
+  floorTileSize 2 2
+}
+E-puck {
+  controller "e-puck-simple_avoidance"
+}
+WoodenBox {
+  translation -0.199238 0.049999999999999996 -0.15048499999999998
+  rotation 0 -1 0 0
+  name "box 1"
+  size 0.1 0.1 0.1
+}
+WoodenBox {
+  translation 0.149637 0.049999999999999996 -0.041906
+  rotation 0 1 0 0.785395
+  name "box 2"
+  size 0.1 0.1 0.1
+}
+WoodenBox {
+  translation -0.318802 0.049999999999999996 0.009406
+  rotation 0 1 0 0.3
+  name "box 3"
+  size 0.1 0.1 0.1
+}
+WoodenBox {
+  translation 0.309283 0.049999999999999996 0.12464099999999999
+  rotation 0 1 0 1.0471979999999999
+  name "box 4"
+  size 0.1 0.1 0.1
+}
+WoodenBox {
+  translation -0.324195 0.049999999999999996 -0.35738899999999996
+  name "rectangle 1"
+  size 0.3 0.1 0.1
+}
+WoodenBox {
+  translation 0.24492399999999998 0.049999999999999996 -0.350638
+  rotation 0 1 0 0.261799
+  name "rectangle 2"
+  size 0.3 0.1 0.1
+}
+WoodenBox {
+  translation -0.229072 0.049999999999999996 0.30759
+  rotation 0 1 0 -0.5235983071795864
+  name "rectangle 3"
+  size 0.3 0.1 0.1
+}
+WoodenBox {
+  translation 0.30132 0.049999999999999996 0.405302
+  name "rectangle 4"
+  size 0.3 0.1 0.1
+}
+OilBarrel {
+  translation -0.10922799999999999 0.049999999999999996 -0.029629
+  name "cylinder 1"
+  height 0.1
+  radius 0.05
+}
+OilBarrel {
+  translation 0.325385 0.049999999999999996 -0.114324
+  name "cylinder 2"
+  height 0.1
+  radius 0.05
+}
+OilBarrel {
+  translation -0.084337 0.049999999999999996 0.159909
+  name "cylinder 3"
+  height 0.1
+  radius 0.05
+}
+OilBarrel {
+  translation 0.030143 0.049999999999999996 0.317048
+  name "cylinder 4"
+  height 0.1
+  radius 0.05
+}
