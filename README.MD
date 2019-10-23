@@ -1,4 +1,4 @@
-# Webots Simulator and e-puck Robot
+# Webots Robot Simulator and e-puck Robot
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/albertbrucelee/webots-e-puck_robot/master/image/webots-e-puck_robot.png">
@@ -19,7 +19,7 @@ You can learn with any kind of robots, any kind of 3D environments. Also you can
 
 ## Description
 
-This repository contain a list of tutorial to learn about robot, implement on e-puck robot, and simulated on Webots simulator.
+This repository contain a list of tutorial to learn about robot, implement on e-puck robot, and simulated on Webots Robot simulator.
 
 ## About Webots Robot Simulator
 

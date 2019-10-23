@@ -1,5 +1,9 @@
 # Simple Avoidance Algorithm, Implemented on e-puck Robot and Simulated on Webots Robot Simulator
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/albertbrucelee/webots-e-puck_robot/master/2%20-%20Simple%20Obstacle%20Avoidance/documentation/simulation_setup.jpg">
+</p>
+
 This repository contain the simple avoidance algorithm program that implemented on e-puck robot and simulated on webots robot simulator.
 
 The source code is written in C programming language.
@@ -16,6 +20,10 @@ or you can follow the official tutorial [here](https://cyberbotics.com/doc/guide
 Don't be afraid, this official tutorial is very clean and easy to understand. And I believe that even if you don't know about it yet, you can learn it easily.
 
 ## Simulation Demo
+<p align="center">
+  <img src="https://raw.githubusercontent.com/albertbrucelee/webots-e-puck_robot/master/2%20-%20Simple%20Obstacle%20Avoidance/documentation/simulation-cutted.gif">
+</p>
+
 Open the "documentation" folder to watch the simulation demo. Or you can watch it on my youtube [here](https://www.youtube.com/watch?v=kMqxzpdTfek&feature=youtu.be).
 
 ## Another Tutorials
@@ -44,3 +52,4 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+
