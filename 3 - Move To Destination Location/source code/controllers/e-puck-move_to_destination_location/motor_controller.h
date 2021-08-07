@@ -1,12 +1,6 @@
 #include <stdbool.h>
 
-void robotControllerInit();
-
-double getRobotBearing();
-
-double * robotControllerGetRobotCoordinate();
-
-double robotControllerGetRobotHeading();
+void motorControllerInit();
 
 void motorStop();
 

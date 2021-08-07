@@ -19,21 +19,21 @@
 #define THETA_MATCHING_ACCURACY 1 //in degrees
 
 
-double * convertVec3fToCartesianVec2f(const double coordinate3f[3]) {
+double * cartesianConvertVec3fToCartesianVec2f(const double coordinate3f[3]) {
     double *coordinate2f = malloc(2);
     coordinate2f[0] = coordinate3f[0];
     coordinate2f[1] = -coordinate3f[2];
     return coordinate2f;
 }
 
-double * convertCartesianVec2fToVec3f(const double coordinate2f[2]) {
+double * cartesianConvertCartesianVec2fToVec3f(const double coordinate2f[2]) {
     double *coordinate3f = malloc(3);
     coordinate3f[0] = coordinate2f[0];
     coordinate3f[2] = -coordinate2f[1];
     return coordinate3f;
 }
 
-double convertCompassBearingToHeading(double heading) {
+double cartesianConvertCompassBearingToHeading(double heading) {
     /* 
 	 * in webots, heading increasement is rotate in clockwise
 	 * in cartesian, heading increasement is rotate in counterclockwise
@@ -53,7 +53,7 @@ double convertCompassBearingToHeading(double heading) {
     return heading;
 }
 
-bool isCoordinateEqual(const double coordinate1[2], const double coordinate2[2])
+bool cartesianIsCoordinateEqual(const double coordinate1[2], const double coordinate2[2])
 {
     if (fabs(coordinate1[0]-coordinate2[0]) < COORDINATE_MATCHING_ACCURACY &&
             fabs(coordinate1[1]-coordinate2[1]) < COORDINATE_MATCHING_ACCURACY) {
@@ -64,7 +64,7 @@ bool isCoordinateEqual(const double coordinate1[2], const double coordinate2[2])
     }
 }
 
-bool isCoordinateVectorEqual(const double coordinateVector1, const double coordinateVector2)
+bool cartesianIsCoordinateVectorEqual(const double coordinateVector1, const double coordinateVector2)
 {
     if (fabs(coordinateVector1-coordinateVector2) < COORDINATE_MATCHING_ACCURACY) {
         return true;
@@ -74,7 +74,7 @@ bool isCoordinateVectorEqual(const double coordinateVector1, const double coordi
     }
 }
 
-bool isThetaEqual(const double theta, const double theta2)
+bool cartesianIsThetaEqual(const double theta, const double theta2)
 {
     if (fabs(theta - theta2) < THETA_MATCHING_ACCURACY)
     {
@@ -85,11 +85,11 @@ bool isThetaEqual(const double theta, const double theta2)
     }
 }
 
-double calcDestinationThetaInDegrees(const double currentCoordinate[2], const double destinationCoordinate[2]) {
+double cartesianCalcDestinationThetaInDegrees(const double currentCoordinate[2], const double destinationCoordinate[2]) {
     return atan2(destinationCoordinate[1] - currentCoordinate[1], destinationCoordinate[0] - currentCoordinate[0]) * 180 / M_PI;
 }
 
-double calcThetaDot(double heading, double destinationTheta) {
+double cartesianCalcThetaDot(double heading, double destinationTheta) {
     double theta_dot = destinationTheta - heading;
 
     if (theta_dot > 180)
@@ -100,7 +100,7 @@ double calcThetaDot(double heading, double destinationTheta) {
     return theta_dot;
 }
 
-double calcRotatedThetaByThetaDot(double theta, double theta_dot)
+double cartesianCalcRotatedThetaByThetaDot(double theta, double theta_dot)
 {
 	if (theta_dot == 0)
 	{
@@ -125,7 +125,7 @@ double calcRotatedThetaByThetaDot(double theta, double theta_dot)
 	return theta;
 }
 
-double calcDistance(const double currentCoordinate[2], const double destinationCoordinate[2]) {
+double cartesianCalcDistance(const double currentCoordinate[2], const double destinationCoordinate[2]) {
     return sqrt(pow(destinationCoordinate[0]-currentCoordinate[0], 2) + pow(destinationCoordinate[1]-currentCoordinate[1], 2));
 }
 

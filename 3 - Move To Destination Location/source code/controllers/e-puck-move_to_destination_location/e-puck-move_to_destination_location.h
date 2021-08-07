@@ -1,3 +1,0 @@
-int getTimeStep();
-
-void step();

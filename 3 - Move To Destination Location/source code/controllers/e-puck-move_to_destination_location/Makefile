@@ -67,7 +67,7 @@
 ###
 ###-----------------------------------------------------------------------------
 
-C_SOURCES = e-puck-move_to_destination_location.c robot_controller.c cartesian.c
+C_SOURCES = e-puck-move_to_destination_location.c motor_controller.c positioning_controller.c cartesian.c
 
 ### Do not modify: this includes Webots global Makefile.include
 space :=

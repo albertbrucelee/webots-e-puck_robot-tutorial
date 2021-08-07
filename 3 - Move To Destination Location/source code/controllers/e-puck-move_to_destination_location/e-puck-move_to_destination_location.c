@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
 
 #include "e-puck-move_to_destination_location.h"
-#include "robot_controller.h"
+#include "motor_controller.h"
+#include "positioning_controller.h"
 #include "cartesian.h"
 
 #include <webots/robot.h>
@@ -46,66 +45,37 @@ void step()
 }
 
 static void init()
-{    
+{
 	time_step = getTimeStep();
 	
-	robotControllerInit(time_step);
+	motorControllerInit(time_step);
+	
+	positioningControllerInit(time_step);
 	
     step();
 }
 
-double calcDistanceToDestination(const double destinationCoordinate[2])
+void rotateHeading(const double thetaDot)
 {
-	const double *currentCoordinate = robotControllerGetRobotCoordinate();
-	return calcDistance(currentCoordinate, destinationCoordinate);
-}
-
-double calcThetaDotToDestination(const double destinationCoordinate[2])
-{
-	const double *currentCoordinate = robotControllerGetRobotCoordinate();
-	double robotHeading = robotControllerGetRobotHeading();
-	double destinationTheta = calcDestinationThetaInDegrees(currentCoordinate, destinationCoordinate);
-	return calcThetaDot(robotHeading, destinationTheta);
-}
-
-void robotControllerMoveToDestination(const double destinationCoordinate[2])
-{
-	// if the robot is already at the destination location
-	if (isCoordinateEqual(robotControllerGetRobotCoordinate(), destinationCoordinate))
+	// if thetaDot is zero
+	if (!cartesianIsThetaEqual(thetaDot, 0))
 	{
-		printf("Robot is already at the destination location\n");
-		return;
-	}
+		// the duration required for the robot to rotate the body by the specified thetaDot
+		double duration = abs(thetaDot) / ROBOT_ANGULAR_SPEED_IN_DEGREES;
+		printf("duration to face the destination: %.5f\n", duration);
 
-	double * currentCoordinate = robotControllerGetRobotCoordinate();
-	printf("Initial Coordinate: %.5f %.5f\n", currentCoordinate[0], currentCoordinate[1]);
-
-	printf("Destination Coordinate: %.5f %.5f\n", destinationCoordinate[0], destinationCoordinate[1]);
-	
-	// thetaDot is the degree of rotation needed by the robot to face the destination
-	// thetaDot is zero if robot is facing the destination
-	double thetaDotToDestination = calcThetaDotToDestination(destinationCoordinate);
-	printf("thetaDotToDestination: %.5f\n", thetaDotToDestination);
-	
-	// if the robot is not facing the destination
-	if (!isThetaEqual(thetaDotToDestination, 0))
-	{
-		// if the destination is on the left, robot will rotate to left
-		if (thetaDotToDestination > 0)
+		// if thetaDot > 0, robot will rotate to left
+		if (thetaDot > 0)
 		{
 			// set robot motor to rotate left
 			motorRotateLeft();
 		}
-		// if the destination is on the right, robot will rotate to right
-		else if (thetaDotToDestination < 0)
+		// if thetaDot < 0, robot will rotate to right
+		else if (thetaDot < 0)
 		{
 			// set robot motor to rotate right
 			motorRotateRight();
 		}
-
-		// the duration needed for the robot to rotate the body to face the destination
-		double duration = abs(thetaDotToDestination) / ROBOT_ANGULAR_SPEED_IN_DEGREES;
-		printf("duration to face the destination: %.5f\n", duration);
 
 		// run the simulator
 		double start_time = wb_robot_get_time();
@@ -115,13 +85,12 @@ void robotControllerMoveToDestination(const double destinationCoordinate[2])
 		}
 		while (wb_robot_get_time() < start_time + duration);
 	}
+}
 
-	// the distance needed for the robot to reach its destination
-	double distanceToDestination = calcDistanceToDestination(destinationCoordinate);
-	printf("distanceToDestination: %.5f\n", distanceToDestination);
-	
-	// the duration needed for the robot to reach its destination
-	double duration = distanceToDestination / TANGENSIAL_SPEED;
+void moveForward(double distance) 
+{
+	// the duration required for the robot to move by the specified distance
+	double duration = distance / TANGENSIAL_SPEED;
 	printf("duration to reach target location: %.5f\n", duration);
 
 	// set robot motor to move forward
@@ -138,8 +107,36 @@ void robotControllerMoveToDestination(const double destinationCoordinate[2])
 	// stop the motor
     motorStop();
 	step();
+}
 
-	currentCoordinate = robotControllerGetRobotCoordinate();
+void moveToDestination(const double destinationCoordinate[2])
+{
+	double * currentCoordinate = positioningControllerGetRobotCoordinate();
+	printf("Initial Coordinate: %.5f %.5f\n", currentCoordinate[0], currentCoordinate[1]);
+
+	printf("Destination Coordinate: %.5f %.5f\n", destinationCoordinate[0], destinationCoordinate[1]);
+	
+	// if the robot is already at the destination location
+	if (cartesianIsCoordinateEqual(positioningControllerGetRobotCoordinate(), destinationCoordinate))
+	{
+		printf("Robot is already at the destination location\n");
+		return;
+	}
+
+	// thetaDot is the degree of rotation needed by the robot to face the destination
+	// thetaDot is zero if robot is facing the destination
+	double thetaDotToDestination = positioningControllerCalcThetaDotToDestination(destinationCoordinate);
+	printf("thetaDotToDestination: %.5f\n", thetaDotToDestination);
+
+	rotateHeading(thetaDotToDestination);
+
+	// the distance needed for the robot to reach its destination
+	double distanceToDestination = positioningControllerCalcDistanceToDestination(destinationCoordinate);
+	printf("distanceToDestination: %.5f\n", distanceToDestination);
+	
+	moveForward(distanceToDestination);
+
+	currentCoordinate = positioningControllerGetRobotCoordinate();
 	printf("Stop Coordinate: %.5f %.5f\n", currentCoordinate[0], currentCoordinate[1]);
 }
 
@@ -149,9 +146,9 @@ int main(int argc, char **argv)
 
     init();
 	
-    const double destinationCoordinate[2] = {0.35, 0.35};
+    const double destinationCoordinate[2] = {0.35, -0.35};
     
-    robotControllerMoveToDestination(destinationCoordinate);
+    moveToDestination(destinationCoordinate);
     
 	wb_robot_cleanup();
     return EXIT_SUCCESS;
