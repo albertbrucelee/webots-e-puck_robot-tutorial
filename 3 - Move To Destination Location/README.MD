@@ -18,6 +18,9 @@ This is the program structure:
 
 For more code explanations, please read the comments in the header files (.h).
 
+## Demo
+Watch the demo on my youtube [here](https://www.youtube.com/watch?v=3cy2nB-w_R4).
+Or open the video inside the "documentation" folder.
 
 ## Other Tutorials
 This tutorial is a part of Webots tutorial series. 
