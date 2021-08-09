@@ -1,3 +1,28 @@
+/*
+ * Copyright 2021 Albert Alfrianta
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * 
+ * 
+ * Created on: 2021-08, Bogor, Indonesia
+ * 
+ * Contact: albert.alfrianta@gmail.com or https://www.linkedin.com/in/albert-alfrianta/
+ * 
+ * Description:
+ * 	Please read the header file for the method explanations.
+ */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -27,6 +52,11 @@
 
 int time_step;
 
+/*
+Method to get simulator time step.
+Webots have simulator time step. 
+The basic time step is the time step increment used by Webots to advance the virtual time and perform physics simulation.
+*/
 int getTimeStep()
 {
     static int time_step = -1;
@@ -35,6 +65,16 @@ int getTimeStep()
     return time_step;
 }
 
+/*
+This command is to perform simulation steps. 
+This needed for the controller time step. 
+The controller time step is the time increment of time executed at each iteration of the control loop of a controller. 
+We must call this to synchronize our program and the simulator condition. 
+It will return -1 if the simulation is stopped. 
+If we not call this command, the robot will do nothing. 
+For example the wb_motor_set_velocity(left_motor, MAX_SPEED) only set the motor speed value. 
+So we need to call and looping the wb_robot_step(time_step) command to make the robot move.
+*/
 void step()
 {
     if (wb_robot_step(time_step) == -1)
@@ -87,7 +127,7 @@ void rotateHeading(const double thetaDot)
 	}
 }
 
-void moveForward(double distance) 
+void moveForward(double distance)
 {
 	// the duration required for the robot to move by the specified distance
 	double duration = distance / TANGENSIAL_SPEED;

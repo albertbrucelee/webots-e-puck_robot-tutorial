@@ -6,21 +6,23 @@ The gps coordinate system is using local coordinate system.
 
 The source code is written in C programming language.
 
-Tutorial? Coming soon...
+## Tutorial
+For the tutorial about how the algorithm work, please read it in my Medium [here](https://medium.com/@albert.brucelee).
 
-The program source code is located in the "source code" folder.
+## Source Code
+This is the program structure:
+* e-puck-move_to_destination_location.c : This program is the main controller, contain the robot logic.
+* motor_controller.c : This program contain the controller to handle the robot motor.
+* positioning_controller.c : This program contain the controller to handle the robot positioning (by using gps and compass).
+* cartesian.c : This program contain helpers for cartesian calculation.
 
-## Don't you know about Webots?
+For more code explanations, please read the comments in the header files (.h).
 
-If you don't know about it Webots yet, please read the introduction about Webots that I wrote [here](https://medium.com/@albert.brucelee/introduction-to-webots-robot-simulator-and-e-puck-robot-8a2e2b5d22a9), 
-or you can follow the official tutorial [here](https://cyberbotics.com/doc/guide/tutorials).
 
-Don't be afraid, this official tutorial is very clean and easy to understand. And I believe that even if you don't know about it yet, you can learn it easily.
-
-## Another Tutorials
-You can visit my Medium [here](https://medium.com/@albert.brucelee) for another tutorials.
-
-Also you can view another repositories on my Github about Webots [here](https://github.com/albertbrucelee/webots-e-puck_robot)
+## Other Tutorials
+This tutorial is a part of Webots tutorial series. 
+Visit my Medium [here](https://medium.com/@albert.brucelee) for other series. 
+Go to this repository root for the source codes. 
 
 ## Question?
 
@@ -29,7 +31,7 @@ If you have any question, feel free to contact me by email or [Linkedin](https:/
 ## License
 
 ```
-Copyright 2020 Albert Alfrianta
+Copyright 2021 Albert Alfrianta
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -43,4 +45,5 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+
 
