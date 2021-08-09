@@ -7,7 +7,7 @@ The gps coordinate system is using local coordinate system.
 The source code is written in C programming language.
 
 ## Tutorial
-For the tutorial about how the algorithm work, please read it in my Medium [here](https://medium.com/@albert.brucelee).
+For the tutorial about how the algorithm work, please read it in my Medium [here](https://medium.com/@albert.brucelee/webots-series-move-your-robot-to-specific-coordinates-47d5823695af).
 
 ## Source Code
 This is the program structure:
