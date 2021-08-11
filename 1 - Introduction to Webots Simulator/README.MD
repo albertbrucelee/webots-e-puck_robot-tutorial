@@ -4,7 +4,7 @@
 
 Webots simulator is the solution! You can learn with any kind of robots, any kind of environments. Also you can create your custom robots and environment. The most interesting is Webots is free and open source.
 
-Read this tutorial from my [Medium](https://medium.com/@albert.brucelee/introduction-to-webots-robot-simulator-and-e-puck-robot-8a2e2b5d22a9)
+Read this tutorial from my [Medium](https://medium.com/@albert.brucelee/8a2e2b5d22a9)
 
 The program source code is in [source code folder](https://github.com/albertbrucelee/webots-e-puck_robot/tree/master/1%20-%20Introduction%20to%20Webots%20Simulator/source%20code)
 

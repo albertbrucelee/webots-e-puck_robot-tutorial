@@ -8,7 +8,7 @@ This repository contain the simple avoidance algorithm program that implemented 
 
 The source code is written in C programming language.
 
-How does it work? Please read the tutorial from my Medium [here](https://medium.com/@albert.brucelee/simple-avoidance-algorithm-implemented-on-e-puck-robot-and-simulated-on-webots-robot-simulator-3143c096d285)
+How does it work? Please read the tutorial from my Medium [here](https://medium.com/@albert.brucelee/3143c096d285)
 
 The program source code is located in the "source code" folder.
 
