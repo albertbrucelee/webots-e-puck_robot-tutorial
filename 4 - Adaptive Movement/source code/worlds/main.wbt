@@ -1,0 +1,38 @@
+#VRML_SIM R2020a utf8
+WorldInfo {
+  basicTimeStep 8
+}
+Viewpoint {
+  orientation -1 0 0 1.5987500000000008
+  position -0.034 1.2117716075902112 -0.037081349520365986
+}
+Background {
+  skyColor [
+    1 1 1
+  ]
+}
+DirectionalLight {
+  direction 0 -1 1
+  intensity 3
+}
+RectangleArena {
+  floorSize 0.5 0.5
+  floorTileSize 2 2
+}
+E-puck {
+  translation 0 0 -0.1
+  controller "e-puck-adaptive_movement"
+  supervisor TRUE
+  turretSlot [
+    GPS {
+    }
+    Compass {
+    }
+  ]
+}
+OilBarrel {
+  translation 0 0.03 0.15
+  name "cylinder 1"
+  height 0.1
+  radius 0.05
+}
