@@ -7,7 +7,7 @@ The gps coordinate system is using local coordinate system.
 The source code is written in C programming language.
 
 ## Tutorial
-For the tutorial about how the algorithm work, please read it in my Medium [here](https://medium.com/@albert.brucelee/47d5823695af).
+For the tutorial about how the algorithm work, please read it in my Medium [here](https://medium.com/@albert.brucelee/ecf50cb4244b).
 
 ## Source Code
 This is the program structure:
